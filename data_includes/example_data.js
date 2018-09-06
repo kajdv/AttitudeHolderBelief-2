@@ -2,7 +2,7 @@
 var manualSendResults = true;
 var showProgressBar = true;
 var shuffleSequence = seq("consent","instructions",startsWith("Practice"),"scaleinstr","distract",randomize("experiment"),
-                            "feedback","send","confirmation");
+                            "feedback","send","debriefing","final");
 // rshuffle(startsWith("experiment")),rshuffle(startsWith("experiment"))
 PennController.ResetPrefix(null);
 
@@ -45,10 +45,10 @@ var items = [
     )]
     ,
     ["instructions", "PennController", PennController(
-        newHtml("instructions form", "TaskInstructions-AH-belief.html")
+        newHtml("instructions form", "TaskInstructions-DiscFam.html")
             .print()
         ,
-        newButton("continue btn", "Click for more instructions.")
+        newButton("continue btn", "Click here to continue.")
             .print()
             .wait()
 //            .wait( getHtml("instructions form").test.complete().failure(getHtml("instructions form").warn()) )
@@ -84,7 +84,7 @@ var items = [
     )]
      ,
     ["send", "__SendResults__", {}]   
-    ,    // Sona only
+    , 
      ["debriefing", "PennController", PennController(
         newHtml("confirmation form", "IbexDebriefing.html")
              .print()
@@ -104,9 +104,9 @@ var items = [
     
 ];
 
-PennController.GetTable( "datasource-however_AH_bel.csv" ).setLabel("Expt");
+PennController.GetTable( "datasource-however_DiscFam.csv" ).setLabel("Expt");
 
-PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.csv" ).filter("Expt","experiment"),
+PennController.FeedItems( PennController.GetTable( "datasource-however_DiscFam.csv" ).filter("Expt","experiment"),
     (item) => PennController(
         newTimer("blank", 1000)
             .start()
@@ -117,12 +117,16 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
             .settings.position("bottom center")
             .settings.key(" ", "no click")
         ,
-        newCanvas("stimbox", 730, 120)
-            .settings.add(25,25,
+        newCanvas("stimbox", 800, 180)
+            .settings.add(25,40,
                 newText("context", item.Background)
                     .settings.size(700, 30)
-            )   
-            .settings.add(25,70,
+            ) 
+            .settings.add(25, 85,
+                newText("context", item.Says)
+                    .settings.size(700, 30)
+            )               
+            .settings.add(25,125,
                 newText("stimuli", item.Stims)
                     .settings.italic()
                     .settings.size(700, 30)                  
@@ -136,12 +140,12 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
         newScale("answer", 9)
             .settings.log()
         ,
-        newCanvas("answerbox", 730, 120)
-            .settings.add(25,25, newText("prompt", item.Prompt).settings.size(700, 30) )   
-            .settings.add(25,25, newText("claim", item.Claim).settings.size(700, 30) ) 
-            .settings.add( 25,75, newText("labelLeft", "No, definitely not.").settings.bold() )
-            .settings.add(180,70, getScale("answer").settings.size(200, 0) )
-            .settings.add(415,75, newText("labeRight", "Yes, definitely.").settings.bold() )
+        newCanvas("answerbox", 800, 150)
+            .settings.add(25,45, newText("labelLeft", "It is likely").settings.size(700, 30).settings.bold() )  
+            .settings.add(100,40, getScale("answer").settings.size(200, 0) )
+            .settings.add(340,45, newText("labeRight", "not likely").settings.size(700, 30).settings.bold() )
+            .settings.add(25,80, newText("claim", item.Claim).settings.size(700, 30) ) 
+          //  .settings.add(145,115, newText("labelMid", "Maybe").settings.bold() )            
             .print()   
         ,
         newText("warning","Please select a response.")
