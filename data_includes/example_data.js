@@ -202,11 +202,11 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
     .log("Item", item.Item)
     .log("NoExpt", item.NoExpt)
     .log("EmbCondition", item.EmbCondition)
-    .log("Background", item.Background)
-    .log("Prompt", item.Prompt)    
-    .log("Stims", item.Stims)
+    .log("Stims", item.Stims)   
+    .log("mcpred", item.mcpred) 
     .log("Claim", item.Claim)
-    .log("mcpred", item.mcpred)
+    .log("Background", item.Background)     
+
 );
 
 
