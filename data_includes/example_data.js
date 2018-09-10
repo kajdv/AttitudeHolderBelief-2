@@ -1,7 +1,7 @@
 // This tells Ibex you will send the results early
 var manualSendResults = true;
 var showProgressBar = true;
-var shuffleSequence = seq("consent","instructions","scaleinstr","distract",randomize("Practice"),randomize("experiment"),"inter","feedback1","feedback2","feedback3","send","debrief");
+var shuffleSequence = seq("setcounter","consent","instructions","scaleinstr","distract",randomize("Practice"),randomize("experiment"),"inter","feedback1","feedback2","feedback3","send","debrief");
 // rshuffle(startsWith("experiment")),rshuffle(startsWith("experiment"))
 PennController.ResetPrefix(null);
 
@@ -24,8 +24,8 @@ PennController.ResetPrefix(null);
 
 var items = [
 
-    // ["setcounter", "__SetCounter__", { } ] // DO I NEED THIS?
-    // ,    
+    ["setcounter", "__SetCounter__", { } ] 
+    ,    
     ["consent", "PennController", PennController(
         newHtml("consent", "SonaConsent.html")
             .settings.log()
@@ -205,7 +205,8 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
     .log("Stims", item.Stims)   
     .log("mcpred", item.mcpred) 
     .log("Claim", item.Claim)
-    .log("Background", item.Background)     
+    .log("Background", item.Background)  
+    .log( "ID" , PennController.GetURLParameter("id") )   
 
 );
 
