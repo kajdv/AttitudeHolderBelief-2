@@ -24,7 +24,7 @@ PennController.ResetPrefix(null);
 
 var items = [
 
-    ["setcounter", "__SetCounter__", { } ] 
+    ["setcounter", "__SetCounter__", { } ]
     ,    
     ["consent", "PennController", PennController(
         newHtml("consent", "SonaConsent.html")
@@ -146,7 +146,7 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
             .settings.add(25,40,
                 newText("context", item.Background)
                     .settings.size(700, 30)
-            ) 
+            )
             .settings.add(25, 85,
                 newText("context", item.Says)
                     .settings.size(700, 30)
@@ -167,7 +167,7 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
         ,
         newCanvas("answerbox", 800, 150)
          //   .settings.add(25,40, newText("prompt", item.Prompt).settings.size(700, 30).settings.bold() )   
-            .settings.add(25,40, newText("claim", item.Claim).settings.size(700, 30) ) 
+            .settings.add(25,40, newText("claim", item.Claim).settings.size(700, 30) )
             .settings.add(25,85, newText("labelLeft", "No").settings.bold() )
             .settings.add(50,80, getScale("answer").settings.size(200, 0) )
             .settings.add(285,85, newText("labeRight", "Yes").settings.bold() )
@@ -182,7 +182,7 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
             .print()
         ,
         newButton("validate", "Next question.")
-            .settings.center() 
+            .settings.center()
             .print()    
             .wait(getScale("answer")
                   .test.selected()
@@ -202,11 +202,8 @@ PennController.FeedItems( PennController.GetTable( "datasource-however_AH_bel.cs
     .log("Item", item.Item)
     .log("NoExpt", item.NoExpt)
     .log("EmbCondition", item.EmbCondition)
-    .log("Stims", item.Stims)   
     .log("mcpred", item.mcpred) 
-    .log("Claim", item.Claim)
-    .log("Background", item.Background)  
-    .log( "ID" , PennController.GetURLParameter("id") )   
+    .log("ID", PennController.GetURLParameter("id"))
 
 );
 
