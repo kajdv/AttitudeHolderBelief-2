@@ -1,7 +1,7 @@
 // This tells Ibex you will send the results early
 var manualSendResults = true;
 var showProgressBar = true;
-var shuffleSequence = seq("setcounter","consent","instructions","scaleinstr","distract",randomize("Practice"),randomize("experiment"),"inter","feedback1","feedback2","feedback3","send","debrief");
+var shuffleSequence = seq("consent","instructions","scaleinstr","distract",randomize("Practice"),randomize("experiment"),"inter","feedback1","feedback2","feedback3","send","debrief");
 // rshuffle(startsWith("experiment")),rshuffle(startsWith("experiment"))
 PennController.ResetPrefix(null);
 
@@ -24,8 +24,8 @@ PennController.ResetPrefix(null);
 
 var items = [
 
-    ["setcounter", "__SetCounter__", { } ]
-    ,    
+   // ["setcounter", "__SetCounter__", { } ]
+   // ,    
     ["consent", "PennController", PennController(
         newHtml("consent", "SonaConsent.html")
             .settings.log()
